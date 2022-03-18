@@ -1,0 +1,83 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h1 class="_title text-primary text-center">
+                <i class="fa fa-plus-circle"></i>
+                Add Contact
+            </h1>
+            <span class="fst-italic mt-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est repellendus
+                ullam
+                laboriosam, tempora
+                ipsa perferendis fugiat a dolorum ipsam, sapiente dicta ad laudantium facilis veritatis ipsum totam cum
+                molestiae fuga! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio vel itaque dolorem
+                perspiciatis debitis, eligendi vero, dolore id, dicta laboriosam sit quis eum repellendus tempora
+                provident ipsum animi fugiat tenetur!</span>
+        </div>
+    </div>
+</div>
+
+<!-- Condition based Loading -->
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<!-- Display error message -->
+<div *ngIf="!loading && errMess">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4 class="text-danger fw-bold">{{errMess}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact form-->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-sm-4">
+            <form (submit)="onCreate()">
+                <div class="mb-2">
+                    <input [(ngModel)]="contact.name" name="name" type="text" class="form-control" placeholder="Name"
+                        required>
+                </div>
+                <div class="mb-2">
+                    <input [(ngModel)]="contact.photo" name="photo" type="text" class="form-control"
+                        placeholder="Photo URL" required>
+                </div>
+                <div class="mb-2">
+                    <input [(ngModel)]="contact.email" name="email" type="text" class="form-control" placeholder="Email"
+                        required>
+                </div>
+                <div class="mb-2">
+                    <input [(ngModel)]="contact.mobile" name="mobile" type="text" class="form-control"
+                        placeholder="Moblie No." required>
+                </div>
+                <div class="mb-2">
+                    <input [(ngModel)]="contact.company" name="company" type="text" class="form-control"
+                        placeholder="Company" required>
+                </div>
+                <div class="mb-2">
+                    <input [(ngModel)]="contact.title" name="title" type="text" class="form-control" placeholder="Title"
+                        required>
+                </div>
+                <div class="mb-2">
+                    <select [(ngModel)]="contact.groupId" name="groupId" class="form-control" *ngIf="groups.length > 0"
+                        required>
+                        <option value="">Select a Group</option>
+                        <option [value]="group.id" *ngFor="let group of groups">{{group.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <input type="submit" class="btn btn-success" value="Create">
+                    <a routerLink="/" class="btn btn-warning ms-2">
+                        Close
+                    </a>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <img [src]="contact.photo" alt="user" class="contact-img">
+        </div>
+    </div>
+</div>

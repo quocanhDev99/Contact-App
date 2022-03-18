@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Fredoka", sans-serif;
+  background-color: #cce7e8 !important;
+}
+
+.contact-img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.contact-img-detail{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}

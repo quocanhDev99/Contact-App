@@ -1,0 +1,68 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h1 class="_title text-primary text-center">
+                <i class="fa fa-eye"></i>
+                View Contact
+            </h1>
+            <span class="fst-italic mt-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est repellendus
+                ullam
+                laboriosam, tempora
+                ipsa perferendis fugiat a dolorum ipsam, sapiente dicta ad laudantium facilis veritatis ipsum totam cum
+                molestiae fuga! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio vel itaque dolorem
+                perspiciatis debitis, eligendi vero, dolore id, dicta laboriosam sit quis eum repellendus tempora
+                provident ipsum animi fugiat tenetur!</span>
+        </div>
+    </div>
+</div>
+
+<!-- Condition based Spinner and error message code here -->
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!loading && errMess">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="h4 text-danger fw-bold">
+                    {{errMess}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Contact Details -->
+<div *ngIf="!loading && isNotEmpty()" class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <img [src]="contact.photo" alt="user" class="contact-img-detail">
+        </div>
+        <div class="col-sm-6">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">Name: <span class="fw-bold">{{contact.name}}</span>
+                </li>
+                <li class="list-group-item list-group-item-success">Email: <span
+                        class="fw-bold">{{contact.email}}</span>
+                </li>
+                <li class="list-group-item list-group-item-success">Mobile: <span
+                        class="fw-bold">{{contact.mobile}}</span></li>
+                <li class="list-group-item list-group-item-success">Company: <span
+                        class="fw-bold">{{contact.company}}</span></li>
+                <li class="list-group-item list-group-item-success">Title: <span
+                        class="fw-bold">{{contact.title}}</span>
+                </li>
+                <li class="list-group-item list-group-item-success">Group Name: <span
+                        class="fw-bold">{{group.name}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <pre>{{group | json}}</pre> -->
+    <div class="row">
+        <div class="col">
+            <a routerLink="/" class="btn btn-warning"><i class="fa fa-arrow-alt-circle-left">&nbsp;</i> Go Back</a>
+        </div>
+    </div>
+</div>
