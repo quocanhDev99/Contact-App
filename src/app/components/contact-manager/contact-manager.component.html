@@ -10,13 +10,14 @@
                 mollitia nam cumque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea temporibus doloremque
                 dolore dicta odio unde est eius tempore veritatis nulla laboriosam nisi, perferendis veniam, adipisci
                 doloribus nemo, eveniet voluptas? Et.</p>
-            <form>
+            <form [formGroup]="searchForm">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Search contact">
+                        <input type="text" formControlName="search" [(ngModel)]="key" class="form-control"
+                            placeholder="Search contact">
                     </div>
                     <div class="col-md-6">
-                        <input type="submit" class="btn btn-outline-dark" value="Search">
+                        <input (click)="onSearch()" type="submit" class="btn btn-outline-dark" value="Search">
                     </div>
                 </div>
             </form>
@@ -44,7 +45,7 @@
 <!-- Card Design -->
 <div class="container mt-4" *ngIf="!loading && contacts.length > 0">
     <div class="row">
-        <div *ngFor="let contact of contacts" class="col-md-6 mb-3">
+        <div *ngFor="let contact of contacts |filter:key" class="col-md-6 mb-3">
             <div class="card list-group-item-success">
                 <div class="card-body">
                     <div class="row align-item-center">
@@ -61,9 +62,10 @@
                         <div class="col-sm-1">
                             <a routerLink="/contacts/view/{{contact.id}}" class="btn btn-primary mb-1"><i
                                     class="fa fa-eye"></i></a>
-                            <a routerLink="/contacts/edit/:contactId" class="btn btn-warning mb-1"><i
+                            <a routerLink="/contacts/edit/{{contact.id}}" class="btn btn-warning mb-1"><i
                                     class="fa fa-pen"></i></a>
-                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger" (click)="onDelete(contact)"><i
+                                    class="fa fa-trash"></i></button>
                         </div>
                     </div>
                 </div>

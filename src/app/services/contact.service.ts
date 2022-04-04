@@ -9,6 +9,7 @@ import { MyGroup } from '../models/myGroup';
 })
 export class ContactService {
   private baseUrl: string = 'http://localhost:3000';
+  // public contactId = '';
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +20,7 @@ export class ContactService {
   }
 
   // get single contact
-  public getContact(contactId: string): Observable<MyContact> {
+  public getContact(contactId: string | null = null): Observable<MyContact> {
     const dataUrl: string = `${this.baseUrl}/contacts/${contactId}`;
     return this.http.get<MyContact>(dataUrl).pipe(catchError(this.handleError));
   }
@@ -31,13 +32,13 @@ export class ContactService {
   }
 
   // update contact
-  public updateContact(contact: MyContact, contactId: number): Observable<MyContact> {
+  public updateContact(contact: MyContact, contactId: string | null = null): Observable<MyContact> {
     const dataUrl: string = `${this.baseUrl}/contacts/${contactId}`;
     return this.http.put<MyContact>(dataUrl, contact).pipe(catchError(this.handleError));
   }
 
   // delete contact
-  public deleteContact(contactId: number): Observable<MyContact> {
+  public deleteContact(contactId: string): Observable<MyContact> {
     const dataUrl: string = `${this.baseUrl}/contacts/${contactId}`;
     return this.http.delete<MyContact>(dataUrl).pipe(catchError(this.handleError));
   }

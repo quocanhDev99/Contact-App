@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MyContact } from 'src/app/models/myContact';
 import { MyGroup } from 'src/app/models/myGroup';
 import { ContactService } from 'src/app/services/contact.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-contact',
@@ -16,9 +17,11 @@ export class AddContactComponent implements OnInit {
   public errMess: string | null = null;
   public groups: MyGroup[] = [] as MyGroup[];
 
+
   constructor(
     private contactService: ContactService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +30,7 @@ export class AddContactComponent implements OnInit {
 
   // Get API
   private async getGroups() {
-    this.contactService.getAllGroups()
+    await this.contactService.getAllGroups()
       .subscribe((data: MyGroup[]) => {
         this.groups = data;
       }, error => {
